@@ -1,6 +1,3 @@
-" Reload .vimrc
-nnoremap <Leader>fR :source $MYVIMRC<CR>
-
 " Use Tab to switch buffer
 nnoremap <Tab> :bn<CR>
 
@@ -12,16 +9,13 @@ imap   <M-Tab>  <C-O>:tabprev<CR>
 
 " <Leader>w[1-9] move to window [1-9]
 for i in range(1, 9)
-    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    call SpacevimBind('map', i, 'window-' . i, i . 'wincmd w', 1)
 endfor
 
 " Startify
-nnoremap <silent><Leader>bh :Startify<CR>
+call SpacevimBind('map', 'bh', 'startify', 'Startify', 1)
 
-" vim-better-whitespace
-nnoremap <Leader>xd :StripWhitespace<CR>
-
-" easy-motion
+" easy-motion{{{
 " Default key bindings:
 " <Leader><Leader>w : word
 " <Leader><Leader>b : back
@@ -32,24 +26,23 @@ nnoremap <Leader>xd :StripWhitespace<CR>
 
 " Consistent with spacemacs
 " <Leader>f{char} to move to {char}
-map  <Leader>jj <Plug>(easymotion-bd-f)
-nmap <Leader>jj <Plug>(easymotion-overwin-f)
+call SpacevimBindPlug('map', 'jj', 'move-to-{char}', '(easymotion-s)')
+call SpacevimBindPlug('nmap', 'jj', 'move-to-{char}', '(easymotion-overwin-f)')
+call SpacevimBindPlug('nmap', 'jJ', 'move-to-{char}{char}', '(easymotion-overwin-f2)')
+call SpacevimBindPlug('map', 'jl', 'move-to-line', '(easymotion-bd-jk)')
+call SpacevimBindPlug('nmap', 'jl', 'move-to-line', '(easymotion-overwin-line)')
+call SpacevimBindPlug('map', 'jw', 'move-to-word', '(easymotion-bd-w)')
+call SpacevimBindPlug('nmap', 'jw', 'move-to-word', '(easymotion-overwin-w)')
+call SpacevimBindPlug('map', 'j.', 'repeat', '(easymotion-repeat)')
+"}}}
 
-" s{char}{char} to move to {char}{char}
-nmap <Leader>jJ <Plug>(easymotion-overwin-f2)
 
-" Jump to line
-map <Leader>jl <Plug>(easymotion-bd-jk)
-nmap <Leader>jl <Plug>(easymotion-overwin-line)
-
-" Jump to word
-map  <Leader>jw <Plug>(easymotion-bd-w)
-nmap <Leader>jw <Plug>(easymotion-overwin-w)
+" vim-better-whitespace
+call SpacevimBind('nmap', 'xd','strip-white-space', 'StripWhitespace', 1)
 
 " nerdtree
 nnoremap <F4> :NERDTreeToggle<CR>
 inoremap <F4> <ESC>:NERDTreeToggle<CR>
-nnoremap <Leader>ft :NERDTreeToggle<CR>
 
 let s:lines=&lines
 let s:columns=&columns

@@ -412,4 +412,4 @@ endfunction
 set statusline=%!MyStatusLine()
 endif
 
-execute 'source' fnamemodify(expand('<sfile>'), ':h') . '/keybindings.vim'
+"execute 'source' fnamemodify(expand('<sfile>'), ':h') . '/keybindings.vim'

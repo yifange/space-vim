@@ -30,7 +30,7 @@ if LayerLoaded('unite')
         " If ag available, use it to replace grep
         if executable('ag')
             " Use Ag over Grep
-            set grepprg=ag\ --nogroup\ --nocolor
+            set grepprg='ag\ --nogroup\ --nocolor'
             " Use ag in CtrlP for listing files.
             let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
             " Ag is fast enough that CtrlP doesn't need to cache
@@ -39,7 +39,6 @@ if LayerLoaded('unite')
             let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
         endif
 
-        nnoremap <Leader>fr :CtrlPMRU<CR>
         let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
     endif
     " }
