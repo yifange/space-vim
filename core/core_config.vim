@@ -73,17 +73,24 @@ function! s:warn(cmd, msg)
     echohl None
 endfunction
 
+function! s:download_plug(local)
+    echo '==> Downloading vim-plug ......'
+    execute '!curl -fLo ' . a:local . ' --create-dirs ' . 
+                \   'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endfunction
+
 function! LayersBegin()
 
+    let l:vim_plug_path = '~/.vim/autoload/plug.vim'
+    let l:nvim_plug_path = '~/.local/share/nvim/site/autoload/plug.vim'
+
     " Download vim-plug if unavailable
-    if g:spacevim_nvim && empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-        echo '==> Downloading vim-plug ......'
-        execute '!curl -sSfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    elseif empty(glob('~/.vim/autoload/plug.vim'))
-        echo '==> Downloading vim-plug ......'
-        execute '!curl -fLo ~/.vim/autoload/plug.vim
-                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    if g:spacevim_nvim && empty(glob(l:nvim_plug_path))
+        call s:download_plug(l:nvim_plug_path)
+
+    elseif empty(glob(l:vim_plug_path))
+        call s:download_plug(l:vim_plug_path)
+
     endif
 
     let s:vim_home = $HOME.'/.vim/'
@@ -318,7 +325,6 @@ function! LayersEnd()
         call s:load_layer_config()
         call s:load_private_config()
 
-        call Source(g:spacevim_dir . g:spacevim_core_dir . '/core_keybindings.vim')
         call s:load_layer_keybindings()
         call s:load_private_keybindings()
 

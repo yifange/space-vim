@@ -1,11 +1,5 @@
 if LayerLoaded('lightline')
 
-    " lightline.vim {
-    "if IsDir('lightline.vim')
-    "    let g:lightline = {
-    "                \ 'colorscheme': 'wombat',
-    "                \ }
-    "endif
     let g:lightline = {
                 \ 'active': {
                 \ 'colorscheme': g:colors_name,
@@ -29,9 +23,16 @@ if LayerLoaded('lightline')
                 \   'syntastic': 'error',
                 \   'ale': 'error',
                 \ },
-                \ 'separator': { 'left': '❯', 'right': '❮' },
-                \ 'subseparator': { 'left': '〉', 'right': '〈' }
                 \ }
+
+    " Use powerline fonts if available
+    if exists('g:lightline_powerline_fonts')
+        let g:lightline = {
+                    \ 'separator': { 'left': '', 'right': '' },
+                    \ 'subseparator': { 'left': '', 'right': '' }
+                    \ }
+    endif
+
 
     "based on https://github.com/itchyny/lightline.vim/issues/104
     function! LightlineSwitchTheme(theme)
@@ -142,15 +143,6 @@ if LayerLoaded('lightline')
     function! TagbarStatusFunc(current, sort, fname, ...) abort
         let g:lightline.fname = a:fname
         return lightline#statusline(0)
-    endfunction
-
-    augroup AutoSyntastic
-        autocmd!
-        autocmd BufWritePost *.c,*.cpp call s:syntastic()
-    augroup END
-    function! s:syntastic()
-        SyntasticCheck
-        call lightline#update()
     endfunction
 
     let g:unite_force_overwrite_statusline = 0

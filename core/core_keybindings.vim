@@ -82,9 +82,11 @@ call SpacevimBind('map', '!', 'shell-cmd', 'call feedkeys(":! ")', 1)
 call SpacevimBind('map', '/', 'smart-search', 'Ag', 1)
 call SpacevimBind('nmap', '*', 'smart-search-with-input', 'call SpacevimSmartSearchWithInput(0)', 1)
 call SpacevimBind('vmap', '*', 'smart-search-with-input', 'call SpacevimSmartSearchWithInput(1)', 1)
-call SpacevimBind('map', 'qq', 'prompt-kill-vim', 'quitall', 1)
-call SpacevimBind('map', 'qQ', 'kill-vim', 'quitall!', 1)
-call SpacevimBind('map', 'qs', 'save-buffers-kill-vim', 'xall', 1)
+
+" problematic with SPC q
+" call SpacevimBind('map', 'qq', 'prompt-kill-vim', 'quitall', 1)
+" call SpacevimBind('map', 'qQ', 'kill-vim', 'quitall!', 1)
+" call SpacevimBind('map', 'qs', 'save-buffers-kill-vim', 'xall', 1)
 
 " windows {{{
 "call SpacevimBind('map', 'w1', 'window-1', '1wincmd w', 1)
