@@ -37,4 +37,6 @@ endif
 
 set runtimepath+=$HOME/.space-vim/core
 
+source /usr/share/vim/google/google.vim
+
 call spacevim#bootstrap()

@@ -32,7 +32,7 @@ endfunction
 " Override the default settings as well as adding extras
 function! UserConfig()
   " If you have installed the powerline fonts and want to enable airline layer
-  " let g:airline_powerline_fonts=1
+  let g:airline_powerline_fonts=1
 
   " Use gui colors in terminal if available
   function! s:enable_termgui()
@@ -48,5 +48,5 @@ function! UserConfig()
   endfunction
 
   " If your terminal(-emulator) supports true colors, uncomment the line below
-  " call s:enable_termgui()
+  call s:enable_termgui()
 endfunction
