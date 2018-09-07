@@ -8,7 +8,7 @@ scriptencoding utf-8
   vmap <Leader>;; <Plug>NERDCommenterToggle
   nmap gcc <Plug>NERDCommenterToggle
   omap gcc <Plug>NERDCommenterToggle
-  vmap gcc <Plug>NERDCommenterToggle
+  vmap gc <Plug>NERDCommenterToggle
 " }
 
 " vim-multiple-cursors {
